@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -15,44 +15,114 @@
 
 <body>
     <main>
-        <header>
-            <h1>Color Scheme Generator</h1>
-            <div id="config">
-                <input type="color" id="color-select" />
-                <select name="Choose Scheme" id="scheme-select">
-                    <option value="monochrome">Monochrome</option>
-                    <option value="monochrome-light">Monochrome Light</option>
-                    <option value="monochrome-dark">Monochrome Dark</option>
-                    <option value="analogic">Analogic</option>
-                    <option value="complement">Complement</option>
-                </select>
-                <button id="get-scheme-btn">Get color scheme</button>
+        <aside>
+            <div class="app-detail">Tool 001: Color Palette Generator</div>
+            <div>
+                <h1>Create a Color Palete</h1>
+                <p>Powered by <a href="">The Color API</a>, this generator allows you to create a palette with the
+                    option of
+                    several color palettes.</p>
+                <form id="config">
+                    <div class="field-wrapper">
+                        <label for="color-select">Choose a base color</label>
+                        <input type="color" id="color-select" />
+                    </div>
+                    <fieldset class="field-wrapper">
+                        <legend>Choose number of colors</legend>
+                        <div class="radio-row">
+                            <div class="radio-wrapper">
+                                <input type="radio" id="1-color" value=1 name="number-select" />
+                                <label for="1-color">1</label>
+                            </div>
+                            <div class="radio-wrapper">
+                                <input type="radio" id="3-color" value=3 name="number-select" />
+                                <label for="3-colort">3</label>
+                            </div>
+                            <div class="radio-wrapper">
+                                <input type="radio" id="5-color" value=5 name="number-select" />
+                                <label for="5-color">5</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="field-wrapper">
+                        <label for="scheme-select">Choose a scheme</label>
+                        <div class="select-wrapper">
+                            <select name="Choose scheme" id="scheme-select">
+                                <option value="monochrome">Monochrome</option>
+                                <option value="monochrome-light">Monochrome Light</option>
+                                <option value="monochrome-dark">Monochrome Dark</option>
+                                <option value="analogic">Analogic</option>
+                                <option value="complement">Complement</option>
+                            </select>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                viewBox="0 0 256 256">
+                                <path
+                                    d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="palette-btn-wrapper">
+                        <button id="get-palette-btn">Generate Palette</button>
+                        <div>Design inspired by...</div>
+                    </div>
+                </form>
             </div>
-        </header>
-        <div id="scheme-wrapper">
-            <div class="color-wrapper">
-                <div class="color" id="color-1"></div>
-                <div class="color-code" id="code-1"></div>
+        </aside>
+        <div id="palette-wrapper">
+            <div class="color-wrapper" id="color-1">
+                <div>
+                    <div class="color-code" id="hex-1">Hex: #FFFFFF</div>
+                    <div class="color-code" id="rgb-1">RGB: 222 222 222</div>
+                    <div class="color-code" id="cmyk-1">CMYK: 50 50 50 50</div>
+                </div>
+                <div class="copy-btn-wrapper">
+                    <button>Copy Hex Code</button>
+                </div>
             </div>
-            <div class="color-wrapper">
-                <div class="color" id="color-2"></div>
-                <div class="color-code" id="code-2"></div>
+            <div class="color-wrapper" id="color-2">
+                <div>
+                    <div class="color-code" id="hex-2">Hex: #FFFFFF</div>
+                    <div class="color-code" id="rgb-2">RGB: 222 222 222</div>
+                    <div class="color-code" id="cmyk-2">CMYK: 50 50 50 50</div>
+                </div>
+                <div class="copy-btn-wrapper">
+                    <button>Copy Hex Code</button>
+                </div>
             </div>
-            <div class="color-wrapper">
-                <div class="color" id="color-3"></div>
-                <div class="color-code" id="code-3"></div>
+            <div class="color-wrapper" id="color-3">
+                <div>
+                    <div class="color-code" id="hex-3">Hex: #FFFFFF</div>
+                    <div class="color-code" id="rgb-3">RGB: 222 222 222</div>
+                    <div class="color-code" id="cmyk-3">CMYK: 50 50 50 50</div>
+                </div>
+                <div class="copy-btn-wrapper">
+                    <button>Copy Hex Code</button>
+                </div>
             </div>
-            <div class="color-wrapper">
-                <div class="color" id="color-4"></div>
-                <div class="color-code" id="code-4"></div>
+            <div class="color-wrapper" id="color-4">
+                <div>
+                    <div class="color-code" id="hex-4">Hex: #FFFFFF</div>
+                    <div class="color-code" id="rgb-4">RGB: 222 222 222</div>
+                    <div class="color-code" id="cmyk-4">CMYK: 50 50 50 50</div>
+                </div>
+                <div class="copy-btn-wrapper">
+                    <button>Copy Hex Code</button>
+                </div>
             </div>
-            <div class="color-wrapper">
-                <div class="color" id="color-5"></div>
-                <div class="color-code" id="code-5"></div>
+            <div class="color-wrapper" id="color-5">
+                <div>
+                    <div class="color-code" id="hex-5">Hex: #FFFFFF</div>
+                    <div class="color-code" id="rgb-5">RGB: 222 222 222</div>
+                    <div class="color-code" id="cmyk-5">CMYK: 50 50 50 50</div>
+                </div>
+                <div class="copy-btn-wrapper">
+                    <button>Copy Hex Code</button>
+                </div>
             </div>
         </div>
     </main>
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
 </body>
 
 </html>

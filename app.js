@@ -1,6 +1,6 @@
 const colorSelect = document.getElementById('color-select')
 const schemeSelect = document.getElementById('scheme-select')
-const getSchemeBtn = document.getElementById('get-scheme-btn')
+const getpaletteBtn = document.getElementById('get-palette-btn')
 const colorBlock1 = document.getElementById('color-1')
 const colorCode1 = document.getElementById('code-1')
 const colorBlock2 = document.getElementById('color-2')
@@ -25,7 +25,7 @@ const loadColors = () => {
 }
 
 const getColors = () => {
-    fetch(`https://www.thecolorapi.com/scheme?hex=${colorSelect.value.replace('#', '')}&mode=${schemeSelect.value}`)
+    fetch(`https://www.thecolorapi.com/palette?hex=${colorSelect.value.replace('#', '')}&mode=${schemeSelect.value}`)
         .then(res => res.json())
         .then(data => {
             // console.log(data)
@@ -40,7 +40,7 @@ const getColors = () => {
 
 loadColors()
 
-getSchemeBtn.addEventListener('click', getColors)
+getpaletteBtn.addEventListener('click', getColors)
 
 hexCodes.forEach((hexCode) => {
     hexCode.addEventListener('click', function () {

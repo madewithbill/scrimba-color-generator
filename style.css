@@ -1,28 +1,126 @@
+/* Base */
 body {
-    font-family: 'Zalando Sans SemiExpanded', sans-serif;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #141414;
+    color: white;
+
 }
 
 h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
+}
+
+a:visited {
+    color: unset;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+input,
+select,
+button {
+    cursor: pointer;
 }
 
 main {
-    width: 550px;
-    margin: auto;
-    background-color: lightgrey;
-}
-
-header {
-    padding: 30px 20px;
-}
-
-#config {
-    height: 35px;
+    min-height: 100dvh;
     display: flex;
-    align-items: center;
+}
+
+@media (max-width: 768px) {
+    main {
+        display: block;
+    }
+}
+
+
+/* Control Panel */
+aside {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: space-between;
-    gap: 15px;
+    padding: 1.5rem 2rem 4rem;
+    max-width: 20rem;
+    border: 1px solid;
+}
+
+div.app-detail {
+    font-family: 'IBM Plex Mono';
+    font-size: 0.75rem;
+}
+
+form#config {}
+
+div.field-wrapper,
+fieldset.field-wrapper {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+fieldset,
+legend {
+    all: unset;
+    display: block;
+}
+
+label,
+legend {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+div.radio-row {
+    display: flex;
+    gap: 1rem;
+}
+
+div.radio-wrapper {
+    position: relative;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+div.radio-wrapper label {
+    margin: auto;
+    position: relative;
+    z-index: 100;
+    pointer-events: none;
+}
+
+input[type="radio"] {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    outline: none;
+}
+
+input[type="radio"]:checked {
+    background-color: white;
+}
+
+input[type="radio"]:checked+label {
+    color: black;
 }
 
 input[type="color"] {
@@ -30,6 +128,9 @@ input[type="color"] {
     -webkit-appearance: none;
     padding: 0;
     border: none;
+    border-radius: 0.25rem;
+    min-height: 4rem;
+    min-width: 100%;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -40,50 +141,100 @@ input[type="color"]::-webkit-color-swatch {
     border: none;
 }
 
-#color-select {
-    border-radius: 4px;
-    width: 51px;
-    height: 100%;
-    flex: none;
+div.select-wrapper {
+    position: relative;
 }
 
-#scheme-select {
-    /* padding: 10px 12px; */
-    padding: 0px 12px;
+div.select-wrapper svg {
+    position: absolute;
+    right: 1rem;
+    height: 100%;
+    pointer-events: none;
+}
+
+select#scheme-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 1rem;
     width: 100%;
-    height: 100%;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 0.5rem;
 }
 
-#get-scheme-btn {
-    padding: 0px 16px;
-    height: 100%;
-    flex: none;
-    border: none;
-    border-radius: 4px;
-}
-
-#color-select,
-#scheme-select,
-#get-scheme-btn {
-    cursor: pointer;
-}
-
-#scheme-wrapper {
-    display: flex;
-}
-
-.color-wrapper {
+button#get-palette-btn {
     width: 100%;
+    background-color: #0CB9A5;
+    color: white;
+    margin-bottom: 0.5rem;
 }
 
-.color {
-    min-height: 450px;
-}
-
-
-.color-code {
-    margin: 12px 0px;
-    font-size: 12px;
-    text-transform: capitalize;
+div.palette-btn-wrapper div {
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: 0.7rem;
     text-align: center;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    aside {
+        max-width: none;
+    }
+}
+
+/* Color Palette Results */
+
+div#palette-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+}
+
+div.color-wrapper {
+    width: 100%;
+    /* min-width: 10rem; */
+    padding: 4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: end;
+    gap: 4rem;
+    box-sizing: border-box;
+}
+
+div.color-code {
+    margin-bottom: 0.5rem;
+    font-family: 'IBM Plex Mono', sans-serif;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+}
+
+div.copy-btn-wrapper {
+    min-height: 2.625rem;
+}
+
+div.copy-btn-wrapper button {
+    opacity: 0;
+    width: 100%;
+    border-radius: 999px;
+    white-space: pre;
+    font-size: 0.875rem;
+    transition: all 200ms ease-out;
+}
+
+div.color-wrapper:hover div.copy-btn-wrapper button {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    div#palette-wrapper {
+        display: block;
+        overflow: visible;
+    }
+
+    div.copy-btn-wrapper button {
+        opacity: 1;
+    }
 }

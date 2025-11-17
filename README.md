@@ -5,7 +5,7 @@ The goal of this project was to utilize [The Color API](https://www.thecolorapi.
 
 ## Features
 - Choose a color with the color picker, or refresh the page to get a random color.
-- Choose from 5 different color scheme methods.
+- Choose from 5 different color palette methods.
 - Copy the hex codes of generated colors.
 
 ## Methods
