@@ -4,7 +4,7 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 400;
-    background-color: #141414;
+    background-color: #101111;
     color: white;
 
 }
@@ -16,8 +16,14 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+a,
 a:visited {
     color: unset;
+    text-underline-offset: 0.2rem;
+}
+
+a:hover {
+    color: #0CB9A5
 }
 
 button {
@@ -127,7 +133,7 @@ input[type="color"] {
     appearance: none;
     -webkit-appearance: none;
     padding: 0;
-    border: none;
+    border: 1px solid white;
     border-radius: 0.25rem;
     min-height: 4rem;
     min-width: 100%;
@@ -175,7 +181,7 @@ div.palette-btn-wrapper div {
     font-family: 'IBM Plex Mono', sans-serif;
     font-size: 0.7rem;
     text-align: center;
-    opacity: 0.5;
+    color: #b2b2b2;
 }
 
 @media (max-width: 768px) {
