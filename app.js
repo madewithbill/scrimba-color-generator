@@ -1,18 +1,8 @@
 const colorSelect = document.getElementById('color-select')
+const numberSelect = document.querySelectorAll('input[type=radio]')
+let paletteNumber = 5
 const schemeSelect = document.getElementById('scheme-select')
 const getpaletteBtn = document.getElementById('get-palette-btn')
-const colorBlock1 = document.getElementById('color-1')
-const colorCode1 = document.getElementById('code-1')
-const colorBlock2 = document.getElementById('color-2')
-const colorCode2 = document.getElementById('code-2')
-const colorBlock3 = document.getElementById('color-3')
-const colorCode3 = document.getElementById('code-3')
-const colorBlock4 = document.getElementById('color-4')
-const colorCode4 = document.getElementById('code-4')
-const colorBlock5 = document.getElementById('color-5')
-const colorCode5 = document.getElementById('code-5')
-const hexCodes = document.querySelectorAll('.color-code')
-
 
 const loadColors = () => {
     const characters = '0123456789ABCDEF'
@@ -24,30 +14,66 @@ const loadColors = () => {
     getColors()
 }
 
+const setPalette = (data) => {
+    let colorHTML = ''
+    for (let i = 0; i < paletteNumber; i++) {
+        const yiqContrastColor = () => {
+            const yiqCalc = ((data.colors[i].rgb.r * 299) + (data.colors[i].rgb.g * 587) + (data.colors[i].rgb.b * 114)) / 1000
+            return yiqCalc >= 128 ? 'black' : 'white'
+        }
+
+        colorHTML += `
+        <div class="color-wrapper" id="color-${i + 1}" style="background-color: ${data.colors[i].hex.value};color:${yiqContrastColor()}">
+                <div>
+                    <div class="color-code" id="hex-${i + 1}">Hex: ${data.colors[i].hex.value}</div>
+                    <div class="color-code" id="rgb-${i + 1}">RGB: ${[data.colors[i].rgb.r, data.colors[i].rgb.g, data.colors[i].rgb.b].join(' ')}</div>
+                    <div class="color-code" id="cmyk-${i + 1}">CMYK: ${[data.colors[i].cmyk.c, data.colors[i].cmyk.m, data.colors[i].cmyk.y, data.colors[i].cmyk.k].join(' ')}</div>
+                </div>
+                <div class="copy-btn-wrapper">
+                    <button>Copy Hex Code</button>
+                </div>
+            </div>
+            `
+    }
+    document.getElementById('palette-wrapper').innerHTML = colorHTML
+}
+
 const getColors = () => {
-    fetch(`https://www.thecolorapi.com/palette?hex=${colorSelect.value.replace('#', '')}&mode=${schemeSelect.value}`)
+    fetch(`https://www.thecolorapi.com/scheme?hex=${colorSelect.value.replace('#', '')}&mode=${schemeSelect.value}&count=${paletteNumber}`)
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
-            colorBlock1.style.backgroundColor = colorCode1.textContent = data.colors[0].hex.value
-            colorBlock2.style.backgroundColor = colorCode2.textContent = data.colors[1].hex.value
-            colorBlock3.style.backgroundColor = colorCode3.textContent = data.colors[2].hex.value
-            colorBlock4.style.backgroundColor = colorCode4.textContent = data.colors[3].hex.value
-            colorBlock5.style.backgroundColor = colorCode5.textContent = data.colors[4].hex.value
+            console.log(data)
+            setPalette(data)
         })
 }
 
+const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
 
 loadColors()
 
-getpaletteBtn.addEventListener('click', getColors)
-
-hexCodes.forEach((hexCode) => {
-    hexCode.addEventListener('click', function () {
-        navigator.clipboard.writeText(hexCode.innerHTML)
-        navigator.clipboard.readText()
-            .then((text) => {
-                text === hexCode.innerHTML ? window.alert('Your color has been copied!') : window.alert('Uh oh, there\'s been an error!')
-            })
+numberSelect.forEach(number => {
+    number.addEventListener('click', () => {
+        paletteNumber = number.value
+        getColors()
     })
 })
+
+document.querySelector('form').addEventListener('submit', event => {
+    event.preventDefault()
+    getColors()
+})
+
+document.getElementById('palette-wrapper')
+    .addEventListener('click', (e) => {
+        if (e.target.closest('.copy-btn-wrapper button')) {
+            console.log(e)
+            const hexCode = rgb2hex(e.target.parentElement.parentElement.style.backgroundColor)
+            navigator.clipboard.writeText(hexCode)
+            e.target.textContent = 'Copied!'
+            setTimeout(() => e.target.textContent = 'Copy Hex Code', '1000')
+            navigator.clipboard.readText()
+                .then((text) => {
+                    text === hexCode ? null : window.alert('Uh oh, there\'s been an error!')
+                })
+        }
+    })

@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Color Palette Generator</title>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="radio-wrapper">
                                 <input type="radio" id="3-color" value=3 name="number-select" />
-                                <label for="3-colort">3</label>
+                                <label for="3-color">3</label>
                             </div>
                             <div class="radio-wrapper">
                                 <input type="radio" id="5-color" value=5 name="number-select" />
@@ -52,6 +52,9 @@
                                 <option value="monochrome-dark">Monochrome Dark</option>
                                 <option value="analogic">Analogic</option>
                                 <option value="complement">Complement</option>
+                                <option value="analogic-complement">Analogic Complement</option>
+                                <option value="triad">Triad</option>
+                                <option value="quad">Quad</option>
                             </select>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 viewBox="0 0 256 256">
@@ -68,60 +71,9 @@
                 </form>
             </div>
         </aside>
-        <div id="palette-wrapper">
-            <div class="color-wrapper" id="color-1">
-                <div>
-                    <div class="color-code" id="hex-1">Hex: #FFFFFF</div>
-                    <div class="color-code" id="rgb-1">RGB: 222 222 222</div>
-                    <div class="color-code" id="cmyk-1">CMYK: 50 50 50 50</div>
-                </div>
-                <div class="copy-btn-wrapper">
-                    <button>Copy Hex Code</button>
-                </div>
-            </div>
-            <div class="color-wrapper" id="color-2">
-                <div>
-                    <div class="color-code" id="hex-2">Hex: #FFFFFF</div>
-                    <div class="color-code" id="rgb-2">RGB: 222 222 222</div>
-                    <div class="color-code" id="cmyk-2">CMYK: 50 50 50 50</div>
-                </div>
-                <div class="copy-btn-wrapper">
-                    <button>Copy Hex Code</button>
-                </div>
-            </div>
-            <div class="color-wrapper" id="color-3">
-                <div>
-                    <div class="color-code" id="hex-3">Hex: #FFFFFF</div>
-                    <div class="color-code" id="rgb-3">RGB: 222 222 222</div>
-                    <div class="color-code" id="cmyk-3">CMYK: 50 50 50 50</div>
-                </div>
-                <div class="copy-btn-wrapper">
-                    <button>Copy Hex Code</button>
-                </div>
-            </div>
-            <div class="color-wrapper" id="color-4">
-                <div>
-                    <div class="color-code" id="hex-4">Hex: #FFFFFF</div>
-                    <div class="color-code" id="rgb-4">RGB: 222 222 222</div>
-                    <div class="color-code" id="cmyk-4">CMYK: 50 50 50 50</div>
-                </div>
-                <div class="copy-btn-wrapper">
-                    <button>Copy Hex Code</button>
-                </div>
-            </div>
-            <div class="color-wrapper" id="color-5">
-                <div>
-                    <div class="color-code" id="hex-5">Hex: #FFFFFF</div>
-                    <div class="color-code" id="rgb-5">RGB: 222 222 222</div>
-                    <div class="color-code" id="cmyk-5">CMYK: 50 50 50 50</div>
-                </div>
-                <div class="copy-btn-wrapper">
-                    <button>Copy Hex Code</button>
-                </div>
-            </div>
-        </div>
+        <div id="palette-wrapper"></div>
     </main>
-    <!-- <script src="app.js"></script> -->
+    <script src="app.js"></script>
 </body>
 
 </html>

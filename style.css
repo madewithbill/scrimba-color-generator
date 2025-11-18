@@ -60,8 +60,7 @@ aside {
     gap: 2rem;
     justify-content: space-between;
     padding: 1.5rem 2rem 4rem;
-    max-width: 20rem;
-    border: 1px solid;
+    max-width: 18rem;
 }
 
 div.app-detail {
@@ -69,7 +68,9 @@ div.app-detail {
     font-size: 0.75rem;
 }
 
-form#config {}
+form#config {
+    margin-top: 2rem;
+}
 
 div.field-wrapper,
 fieldset.field-wrapper {
@@ -200,11 +201,9 @@ div#palette-wrapper {
 
 div.color-wrapper {
     width: 100%;
-    /* min-width: 10rem; */
     padding: 4rem 1.5rem;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: end;
     gap: 4rem;
     box-sizing: border-box;
@@ -215,6 +214,7 @@ div.color-code {
     font-family: 'IBM Plex Mono', sans-serif;
     font-size: 0.875rem;
     text-transform: capitalize;
+    white-space: pre;
 }
 
 div.copy-btn-wrapper {
@@ -224,6 +224,7 @@ div.copy-btn-wrapper {
 div.copy-btn-wrapper button {
     opacity: 0;
     width: 100%;
+    min-width: 10rem;
     border-radius: 999px;
     white-space: pre;
     font-size: 0.875rem;
@@ -238,6 +239,10 @@ div.color-wrapper:hover div.copy-btn-wrapper button {
     div#palette-wrapper {
         display: block;
         overflow: visible;
+    }
+
+    div.color-wrapper {
+        padding: 4rem 4rem;
     }
 
     div.copy-btn-wrapper button {
